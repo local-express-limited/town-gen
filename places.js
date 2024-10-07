@@ -40,32 +40,19 @@ function generate_prefix(place_data) {
 	let num_heads = Number(weighted_random(prefix_data["num_heads"], excludes));
 	let num_tails = Number(weighted_random(prefix_data["num_tails"], excludes));
 
-	let prefix = "";
+	let heads = [];
 	for (let i = 0; i < num_heads; i++) {
-		let head = weighted_random(prefix_data["heads"], []);
-		if (prefix) {
-			prefix = prefix + " " + head;
-		} else {
-			prefix = head;
-		}
+		heads.push(weighted_random(prefix_data["heads"], heads));
 	}
+	let names = [];
 	for (let i = 0; i < num_names; i++) {
-		let name = generate_name(place_data["names"]);
-		if (prefix) {
-			prefix = prefix + " " + name;
-		} else {
-			prefix = name;
-		}
+		names.push(generate_name(place_data["names"]));
 	}
+	let tails = [];
 	for (let i = 0; i < num_tails; i++) {
-		let tail = weighted_random(prefix_data["tails"], []);
-		if (prefix) {
-			prefix = prefix + " " + tail;
-		} else {
-			prefix = tail;
-		}
+		tails.push(weighted_random(prefix_data["tails"], tails));
 	}
-	return prefix;
+	return heads.concat(names.concat(tails)).join(' ');
 }
 
 function generate_name(name_data) {
