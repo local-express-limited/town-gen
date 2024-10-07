@@ -1,0 +1,19 @@
+/* container */
+.three-columns {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem 0 1rem 0;
+}
+
+/* columns */
+.three-columns > * {
+    width: 80%;
+    padding: 0 1rem 0 1rem;
+}
+
+/* tablet breakpoint */
+@media (min-width:768px) {
+    .three-columns > * {
+        width: calc(80% / 3);
+    }
+}

@@ -1,0 +1,40 @@
+place: prefix (infix suffix)?
+
+HEAD.30: ( "Abbess" | "Abbey" | "Abbots" | "Abbotts" | "Bishop" | "Bishops" | "Broad"
+	| "Castle" | "Chapel" | "Church" | "Cold" | "East"
+	| "Far" | "Great" | "High" | "Hill" | "Higher" | "Little" | "Long" | "Low" | "Lower"
+	| "Market" | "Middle" | "Nether" | "New" | "North" | "Old" | "Over"
+	| "Small" | "South" | "Stoke" | "Upper" | "Up" | "Water" | "West" )
+
+NAME.10: UCASE_LETTER LCASE_LETTER+
+
+TAIL.20: ( "Abbey" | "Abbot" | "Abbots" | "Abbotts" | "Acre" | "Acres" | "Ash" | "Ashes"
+	| "Bank" | "Banks" | "Bar" | "Bay" | "Beech" | "Bottom" | "Bottoms" | "Bridge" | "Bridges"
+	| "Castle" | "Cliff" | "Corner" | "Cote" | "Cross" | "Dale" | "Dales" | "Down" | "Downs"
+	| "East" | "Edge" | "Elm" | "Elms" | "End" | "Ends"
+	| "Fell" | "Field" | "Fields" | "Fold" | "Foot" | "Forest" | "Frith"
+	| "Gate" | "Gates" | "Ground" | "Grounds"
+	| "Hammer" | "Hammers" | "Head" | "Heads" | "Heath" | "Height" | "Heights" | "High" | "Hill" | "Hills"
+	| "Hole" | "Holes" | "House" | "Houses" | "Lane" | "Lanes" | "Lees" | "Low" | "Lower"
+	| "Manor" | "Magna" | "Marsh" | "Mile" | "Mill" | "Mills" | "Moor" | "Moors" | "Moss" | "Nook" | "North"
+	| "Oak" | "Oaks" | "Park" | "Point" | "Points" | "Regis"
+	| "Sands" | "Side" | "South" | "Spa" | "Spring" | "Springs" | "Stone" | "Street" | "Top" | "Tree"
+	| "Vale" | "Valley" | "View" | "Weald" | "Well" | "West" | "Wold" | "Wood" | "Woods" )
+
+JOINER.50: ( /\ban\b/ | /\bat\b/ | /\batte\b/
+	| /\bby\b/ | /\bcum\b/ | /\bde\b/ | /\ben\b/ | /\bin\b/ | /\bjuxta\b/
+	| /\ble\b/ | /\bla\b/ | /\bnear\b/ | /\bnext\b/
+	| /\bof\b/ | /\bon\b/ | /\bover\b/ | /\bsub\b/ | /\bsuper\b/
+	| /\bthe\b/ | /\bunder\b/ | /\bup\b/ | /\bupon\b/
+	| /\bwith\b/ | /\by\b/ | /\byr\b/ )
+
+PRESUFFIX.15: ( "Two" | "Three" | "Four" | "Five" | "Six" | "Nine" | "Ten" | "Twelve" )
+
+prefix.5: HEAD* NAME* TAIL*
+infix.3: JOINER+
+suffix.2: ( TAIL | NAME | NAME TAIL | TAIL+)
+
+%import common.UCASE_LETTER
+%import common.LCASE_LETTER
+%import common.WS
+%ignore WS
